@@ -16,6 +16,7 @@ Add macros and servermonitoring on demand.<br>
 <br>
 Version History:<br>
 v0.1b: First beta<br>
+v1.0: fixed bugs, added netstat and ps
 
 ------------------------------------------
 This program is licensed under the GPLv3.<br>
