@@ -51,7 +51,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -65,11 +64,22 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.comboBox1 = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -78,7 +88,7 @@
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button8);
             this.groupBox4.Controls.Add(this.treeView1);
-            this.groupBox4.Location = new System.Drawing.Point(1036, 12);
+            this.groupBox4.Location = new System.Drawing.Point(1383, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(363, 745);
             this.groupBox4.TabIndex = 19;
@@ -140,7 +150,7 @@
             this.textBox2.BackColor = System.Drawing.Color.Black;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(202, 433);
+            this.textBox2.Location = new System.Drawing.Point(121, 432);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(116, 13);
@@ -222,17 +232,19 @@
             this.textBox1.BackColor = System.Drawing.Color.Black;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(318, 433);
+            this.textBox1.Location = new System.Drawing.Point(237, 432);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(677, 13);
+            this.textBox1.Size = new System.Drawing.Size(758, 13);
             this.textBox1.TabIndex = 12;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // listView1
             // 
             this.listView1.Location = new System.Drawing.Point(8, 19);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(188, 344);
+            this.listView1.ShowGroups = false;
+            this.listView1.Size = new System.Drawing.Size(107, 344);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
@@ -242,11 +254,11 @@
             this.richTextBox1.BackColor = System.Drawing.Color.Black;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(202, 19);
+            this.richTextBox1.Location = new System.Drawing.Point(121, 19);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(810, 415);
+            this.richTextBox1.Size = new System.Drawing.Size(891, 415);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click_1);
@@ -257,7 +269,6 @@
             this.groupBox5.Controls.Add(this.button10);
             this.groupBox5.Controls.Add(this.button11);
             this.groupBox5.Controls.Add(this.button12);
-            this.groupBox5.Controls.Add(this.button6);
             this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.listView1);
@@ -274,7 +285,7 @@
             // 
             this.button10.Location = new System.Drawing.Point(11, 427);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(185, 23);
+            this.button10.Size = new System.Drawing.Size(104, 23);
             this.button10.TabIndex = 17;
             this.button10.Text = "Delete";
             this.button10.UseVisualStyleBackColor = true;
@@ -284,7 +295,7 @@
             // 
             this.button11.Location = new System.Drawing.Point(11, 398);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(185, 23);
+            this.button11.Size = new System.Drawing.Size(104, 23);
             this.button11.TabIndex = 16;
             this.button11.Text = "Edit";
             this.button11.UseVisualStyleBackColor = true;
@@ -294,21 +305,11 @@
             // 
             this.button12.Location = new System.Drawing.Point(11, 369);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(185, 23);
+            this.button12.Size = new System.Drawing.Size(104, 23);
             this.button12.TabIndex = 15;
             this.button12.Text = "Add";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(88, 369);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // groupBox1
             // 
@@ -395,7 +396,6 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -421,11 +421,103 @@
             this.comboBox3.TabIndex = 18;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.textBox5);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.textBox4);
+            this.groupBox6.Controls.Add(this.label4);
+            this.groupBox6.Controls.Add(this.progressBar2);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.label1);
+            this.groupBox6.Controls.Add(this.progressBar1);
+            this.groupBox6.Location = new System.Drawing.Point(1033, 12);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(344, 745);
+            this.groupBox6.TabIndex = 34;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Server Stats";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(9, 157);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox5.Size = new System.Drawing.Size(321, 263);
+            this.textBox5.TabIndex = 40;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "ps -a";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(9, 479);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(321, 254);
+            this.textBox4.TabIndex = 36;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 463);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Netstat -a -p --tcp";
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(9, 94);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(321, 23);
+            this.progressBar2.TabIndex = 32;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "RAM";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "CPU";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(9, 42);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(321, 23);
+            this.progressBar1.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1410, 766);
+            this.ClientSize = new System.Drawing.Size(1758, 766);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -444,6 +536,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -471,7 +565,6 @@
         private System.Windows.Forms.ListBox listBox4;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Timer timer1;
@@ -485,6 +578,16 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.TextBox comboBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBar1;
 
     }
 }

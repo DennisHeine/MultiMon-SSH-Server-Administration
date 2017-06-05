@@ -12,32 +12,80 @@ using System.Net.Sockets;
 
 namespace WindowsFormsApplication1
 {
+
+    //I'm sorry for this really sloppy code, but had to finish it all in one day.
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
+        delegate void SetTextCallback(string text);
 
         public void setSyslog(String text)
         {
-            textBox3.Text = text;
+            if (textBox3.InvokeRequired)
+                textBox3.Invoke(new SetTextCallback(setSyslog),new object[]{text});
+            else
+                textBox3.Text = text.Replace("\n","\r\n");
+        }
+
+        public void setNetstat(String text)
+        {
+            if(textBox4.InvokeRequired)
+                textBox4.Invoke(new SetTextCallback(setNetstat),new object[]{text});
+            else
+                textBox4.Text = text.Replace("\n", "\r\n");
+        }
+
+        public void setPS(String text)
+        {
+            if(textBox5.InvokeRequired)
+                textBox5.Invoke(new SetTextCallback(setPS), new object[] { text });
+            else
+                textBox5.Text = text.Replace("\n", "\r\n");
         }
 
         public void setTerminalPathText(String text)
         {
-            if(text!="")
-            textBox2.Text = text+"#";
+            if (text != "")
+            {
+                if(textBox2.InvokeRequired)
+                    textBox2.Invoke(new SetTextCallback(setTerminalPathText), new object[] { text });
+                else
+                    textBox2.Text = text + "#";
+            }
         }
 
         public void setTerminalText(String text)
         {
-            String txt = richTextBox1.Text;
-            if (text != "") ;
+            if (richTextBox1.InvokeRequired)
+                richTextBox1.Invoke(new SetTextCallback(setTerminalText), new object[] { text });
+            else
             {
-                txt = txt + "\n" + text;
-                richTextBox1.Text = txt;
+                String txt = richTextBox1.Text;
+                if (text != "") ;
+                {
+                    txt = txt + "\n" + text;
+                    richTextBox1.Text = txt;
+                }
             }
+        }
+
+
+        public void setCPUPercentage(double perc)
+        {
+            //progressBar1.Value = (int)perc;
+        }
+
+        public void setRAMPercentage(double perc)
+        {
+           // progressBar2.Value = (int)perc;
+        }
+
+        public void setHDDPercentage(double perc)
+        {
+            //progressBar3.Value = (int)perc;
         }
 
         public void addServerFolderPath(String folder)
@@ -143,6 +191,8 @@ namespace WindowsFormsApplication1
                 comboBox3.Items.Add(d.Name);
             }
             comboBox3.SelectedIndex = 0;
+
+            backgroundWorker2.RunWorkerAsync();
 
         }
 
@@ -308,9 +358,17 @@ namespace WindowsFormsApplication1
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {    
-            if(Globals.sshconnection!=null)
+        {
+            if (Globals.sshconnection != null)
+            {
                 Globals.sshconnection.getSyslog();
+                Globals.sshconnection.getNetstat();
+                Globals.sshconnection.getPS();
+                
+                Globals.sshconnection.getCPUPercentage();
+                Globals.sshconnection.getRAMPercentage();
+               // Globals.sshconnection.getHDDPercentage();
+            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -482,6 +540,39 @@ namespace WindowsFormsApplication1
             comboBox1.Text = comboBox3.SelectedItem.ToString();
             Globals.directory = comboBox1.Text;
             updateDirectory();
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                if (Globals.sshconnection != null)
+                {
+
+                    Globals.sshconnection.getSyslog();
+                    Globals.sshconnection.getNetstat();
+                    Globals.sshconnection.getPS();
+                    System.Threading.Thread.Sleep(5000);
+                    
+                }
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            textBox4.SelectionStart = textBox4.Text.Length;
+            textBox4.ScrollToCaret();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            textBox5.SelectionStart = textBox5.Text.Length;
+            textBox5.ScrollToCaret();
         }
     }
 }

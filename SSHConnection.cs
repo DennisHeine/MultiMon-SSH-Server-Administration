@@ -11,7 +11,18 @@ namespace WindowsFormsApplication1
         ConnectionInfo ConnNfo;
         SshClient sshclient;
         SshClient forwardedssh;
+
+        SshClient sshclient1;
         ShellStream stream;
+
+        public ShellStream gstream()
+        {
+            Random rnd = new Random();
+            int month = rnd.Next(1, 999999999);
+
+            ShellStream mstream = sshclient.CreateShellStream(month.ToString(), 80, 24, 800, 600, 4096);
+            return mstream;
+        }
         public SSHConnection(String host, int Port, String Username, String Password, String name)
         {
             try
@@ -19,16 +30,11 @@ namespace WindowsFormsApplication1
                 ConnNfo = new ConnectionInfo(host, Port, Username, new AuthenticationMethod[] { new PasswordAuthenticationMethod(Username, Password) });
                 sshclient = new SshClient(ConnNfo);
                 sshclient.Connect();
-                stream = sshclient.CreateShellStream(name, 80, 24, 800, 600, 4096);
-                ForwardedPortLocal forwarding = new ForwardedPortLocal("127.0.0.1", (uint)12345, host, (uint)Port);
-                sshclient.AddForwardedPort(forwarding);
-                forwarding.Start();
-                forwardedssh = new SshClient("127.0.0.1", 12345, Username, Password);
-                forwardedssh.Connect();
+                stream = gstream();               
                 Globals.sshconnection = this;
                 updatePath();
-                SessionData d = new SessionData(name, host, Port, Username, Password);
-                Globals.Settings.Sessions.Add(name, this);
+                //SessionData d = new SessionData(name, host, Port, Username, Password);
+                //Globals.Settings.Sessions.Add(name, this);
             }
             catch (Exception e) { System.Windows.Forms.MessageBox.Show("Error connecting to server."); }
         }
@@ -37,31 +43,87 @@ namespace WindowsFormsApplication1
         {
             if (sshclient.IsConnected)
             {
-                stream.WriteLine("cat /var/log/syslog");
-                stream.Expect("cat /var/log/syslog");
-                String results = "";
-                String result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
-                while (result != null)
-                {
-                    result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
-                    if(result!=null)
-                        results += "\r\n" + result;
-                }
-                Globals.mainForm.setSyslog(results);
+                
+                SshClient sshclient1 = new SshClient(ConnNfo);
+                sshclient1.Connect();
+                SshCommand c = sshclient1.RunCommand("cat /var/log/syslog");
+                Globals.mainForm.setSyslog(c.Result);
             }
         }
 
-        public void upOneDir()
+        public void getPS()
         {
-            stream.WriteLine("cd ..");
-            stream.Expect("cd ..");
+            SshCommand c = sshclient.RunCommand("ps -aux");
+            Globals.mainForm.setPS(c.Result);
+        }
+
+        private String doCommand(String cmd)
+        {
+            SshClient sshclient1 = new SshClient(ConnNfo);
+            sshclient1.Connect();
+            ShellStream mstream = sshclient1.CreateShellStream("dsaf", 80, 24, 800, 600, 4096);
+
+            ShellStream stream = mstream;
+            stream.WriteLine(cmd);
+            stream.Expect(cmd);
+            String results = "";
+            String result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
+            while (result != null)
+            {
+                result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
+                if (result != null)
+                    results += "\r\n" + result;
+            }
+            return results;
+        }
+
+        public void getNetstat()
+        {
+            SshCommand c = sshclient.RunCommand("netstat -a -p --tcp");            
+            Globals.mainForm.setNetstat(c.Result);
+        }
+
+        public void getCPUPercentage()
+        {
+         //  stream.WriteLine("top -bn1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}'");
+           // stream.Expect("top -bn1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}'");
+            
+         //   String results = "";
+         //   String result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
+        //    while (result != null)
+       //     {
+       //         result = stream.ReadLine(TimeSpan.FromMilliseconds(500));
+        //        if (result != null)
+        //            results += "\r\n" + result;
+        //    }
+
+            //String percentage=doCommand("top -bn1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}'");
+           // Globals.mainForm.setCPUPercentage(double.Parse(results));
+        }
+
+        public void getRAMPercentage()
+        {
+            /*
+            String totalram = doCommand("free -m | awk '{print $2}'| head -2 | tail -1");
+            String freeram = doCommand("free -m | awk '{print $4}'| head -3| tail -1");
+            int freepercent = 100 * int.Parse(freeram) / int.Parse(totalram);
+            int usedpercent = 100 - freepercent;
+            
+            Globals.mainForm.setRAMPercentage(usedpercent);
+             * */
+        }
+
+    
+
+        public void upOneDir()
+        {         
+            sshclient.RunCommand("cd ..");
             updatePath();
         }
 
         public void chdir(String dir)
         {
-            stream.WriteLine("cd "+dir);
-            stream.Expect("cd "+dir);
+            sshclient.RunCommand("cd "+dir);            
             updatePath();
         }
 
@@ -70,6 +132,7 @@ namespace WindowsFormsApplication1
         {         
             try
             {
+              
                 stream.WriteLine("pwd");
                 stream.Expect("pwd");
                 
@@ -110,7 +173,8 @@ namespace WindowsFormsApplication1
         public void sendCommand(String command)
         {
             try
-            {      
+           {                
+                
                 stream.WriteLine(command);
                 stream.Expect(command);
                 String result = "";
