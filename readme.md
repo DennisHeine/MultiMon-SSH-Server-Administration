@@ -1,6 +1,6 @@
 MultiMon
 ==========================================
-Multimon is a linux server adminitration panel.<br>
+Multimon is a linux server adminitration panel for windows.<br>
 It comes with the following features:<br>
 -SSH<br>
 -SCP<br>
