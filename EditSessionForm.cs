@@ -44,5 +44,14 @@ namespace WindowsFormsApplication1
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void EditSessionForm_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = name;
+            textBox3.Text = port.ToString();
+            textBox2.Text = ip;
+            textBox4.Text = username;
+            textBox5.Text = password;
+        }
     }
 }

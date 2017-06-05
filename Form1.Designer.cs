@@ -48,6 +48,9 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,15 +58,13 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.listBox4 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -126,7 +127,6 @@
             this.treeView1.ShowRootLines = false;
             this.treeView1.Size = new System.Drawing.Size(351, 622);
             this.treeView1.TabIndex = 0;
-            
             // 
             // imageList1
             // 
@@ -155,7 +155,6 @@
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SysLog";
-            
             // 
             // textBox3
             // 
@@ -225,9 +224,8 @@
             this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(318, 433);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(694, 13);
+            this.textBox1.Size = new System.Drawing.Size(677, 13);
             this.textBox1.TabIndex = 12;
-            
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // listView1
@@ -237,7 +235,6 @@
             this.listView1.Size = new System.Drawing.Size(188, 344);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // richTextBox1
@@ -248,12 +245,12 @@
             this.richTextBox1.Location = new System.Drawing.Point(202, 19);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox1.Size = new System.Drawing.Size(810, 415);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click_1);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            
             // 
             // groupBox5
             // 
@@ -271,7 +268,37 @@
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "SSH";
-            
+            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(11, 427);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(185, 23);
+            this.button10.TabIndex = 17;
+            this.button10.Text = "Delete";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(11, 398);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(185, 23);
+            this.button11.TabIndex = 16;
+            this.button11.Text = "Edit";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(11, 369);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(185, 23);
+            this.button12.TabIndex = 15;
+            this.button12.Text = "Add";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button6
             // 
@@ -285,12 +312,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.listBox3);
             this.groupBox1.Controls.Add(this.listBox4);
-            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.listBox2);
             this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 483);
@@ -299,7 +327,8 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SCP File Copy";
-            
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(262, 147);
@@ -335,7 +364,6 @@
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(120, 225);
             this.listBox3.TabIndex = 13;
-            
             this.listBox3.DoubleClick += new System.EventHandler(this.listBox3_DoubleClick);
             // 
             // listBox4
@@ -347,31 +375,22 @@
             this.listBox4.TabIndex = 12;
             this.listBox4.DoubleClick += new System.EventHandler(this.listBox4_DoubleClick);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(11, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 21);
-            this.comboBox1.TabIndex = 11;
-            // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(11, 37);
+            this.listBox2.Location = new System.Drawing.Point(11, 63);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(120, 225);
+            this.listBox2.Size = new System.Drawing.Size(120, 199);
             this.listBox2.TabIndex = 10;
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(128, 37);
+            this.listBox1.Location = new System.Drawing.Point(128, 63);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 225);
+            this.listBox1.Size = new System.Drawing.Size(120, 199);
             this.listBox1.TabIndex = 9;
-            
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // timer1
@@ -386,35 +405,21 @@
             this.timer2.Interval = 5000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // button10
+            // comboBox1
             // 
-            this.button10.Location = new System.Drawing.Point(11, 427);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(185, 23);
-            this.button10.TabIndex = 17;
-            this.button10.Text = "Delete";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.comboBox1.Location = new System.Drawing.Point(11, 44);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(237, 20);
+            this.comboBox1.TabIndex = 17;
             // 
-            // button11
+            // comboBox3
             // 
-            this.button11.Location = new System.Drawing.Point(11, 398);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(185, 23);
-            this.button11.TabIndex = 16;
-            this.button11.Text = "Edit";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(11, 369);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(185, 23);
-            this.button12.TabIndex = 15;
-            this.button12.Text = "Add";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(11, 20);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(237, 21);
+            this.comboBox3.TabIndex = 18;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -438,6 +443,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -463,7 +469,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button6;
@@ -478,6 +483,8 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox comboBox1;
 
     }
 }

@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
                 SessionData d = new SessionData(name, host, Port, Username, Password);
                 Globals.Settings.Sessions.Add(name, this);
             }
-            catch (Exception e) { }
+            catch (Exception e) { System.Windows.Forms.MessageBox.Show("Error connecting to server."); }
         }
 
         public void getSyslog()

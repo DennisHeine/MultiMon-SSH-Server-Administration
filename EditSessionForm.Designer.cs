@@ -163,6 +163,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditSessionForm";
             this.Text = "Edit Session";
+            this.Load += new System.EventHandler(this.EditSessionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -30,6 +30,14 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            foreach (String key in Globals.Settings.Macros.Keys)
+                if (key == textBox1.Text)
+                {
+                    MessageBox.Show("Name already existing.");
+                    return;
+                }
+
             if (!(textBox1.Text == "" || textBox2.Text == ""))
             {
                 macro = textBox1.Text;

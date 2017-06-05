@@ -106,10 +106,44 @@ namespace WindowsFormsApplication1
             Globals.mainForm = this;
             updateDirectory();
             Globals.load_data();
-            String pass="";
-            while(pass=="")
-                pass = Microsoft.VisualBasic.Interaction.InputBox("Please enter the master password.", "Master Password", "");
+            String pass="";            
+            {
+                pass = Microsoft.VisualBasic.Interaction.InputBox("Please enter the master password. Leave empty to cancel.", "Master Password", " ");
+                if (pass == "")
+                    Application.Exit();
+                else
+                    if (SessionData.StringCipher.Decrypt(Globals.Settings.Token, pass) != "B33F")
+                    {
+                        if (Globals.Settings.Token != "")
+                        {
+                            MessageBox.Show("Wrong password. Application will exit.");
+                            Application.Exit();
+                        }
+                    }
+            }
             Globals.masterpass = pass;
+
+
+            foreach (String key in Globals.Settings.Sessions.Keys)
+            {
+                listView1.Items.Add(((SessionData)Globals.Settings.Sessions[key]).SessionName);
+            }            
+
+            foreach (String key in Globals.Settings.Macros.Keys)
+                listBox5.Items.Add(key);
+
+            foreach (String key in Globals.Settings.Monitors.Keys)
+            {
+                treeView1.Nodes.Add(((MonitoringData)Globals.Settings.Monitors[key]).name);
+            }
+
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            foreach (DriveInfo d in drives)
+            {
+                comboBox3.Items.Add(d.Name);
+            }
+            comboBox3.SelectedIndex = 0;
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -397,7 +431,7 @@ namespace WindowsFormsApplication1
             {
                 SessionData s = (SessionData)Globals.Settings.Sessions[listView1.SelectedItems[0].Text];
 
-                AddSessionForm f = new AddSessionForm();
+                EditSessionForm f = new EditSessionForm();
                 f.name = s.SessionName;
                 f.ip = s.Host;
                 f.port = s.Port;
@@ -431,6 +465,23 @@ namespace WindowsFormsApplication1
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Globals.save_data();
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox1.Text = comboBox3.SelectedItem.ToString();
+            Globals.directory = comboBox1.Text;
+            updateDirectory();
         }
     }
 }

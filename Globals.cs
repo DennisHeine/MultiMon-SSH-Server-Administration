@@ -22,9 +22,58 @@ namespace WindowsFormsApplication1
         public static String masterpass;
         [Serializable]
         public class settings{
-            public  Hashtable Sessions = new Hashtable();
-            public  Hashtable Macros = new Hashtable();
-            public  Hashtable Monitors = new Hashtable();
+            private  Hashtable _Sessions = new Hashtable();
+            private  Hashtable _Macros = new Hashtable();
+            private  Hashtable _Monitors = new Hashtable();
+            private String _Token = "";
+
+            public String Token
+            {
+                get
+                {
+                    return _Token;
+                }
+                set
+                {
+                    _Token = value;
+                }
+            }
+
+            public Hashtable Sessions
+            {
+                get
+                {
+                    return _Sessions;
+                }
+                set
+                {
+                    _Sessions = value;
+                }
+            }
+
+            public Hashtable Macros
+            {
+                get
+                {
+                    return _Macros;
+                }
+                set
+                {
+                    _Macros = value;
+                }
+            }
+
+            public Hashtable Monitors
+            {
+                get
+                {
+                    return _Monitors;
+                }
+                set
+                {
+                    _Monitors = value;
+                }
+            }
 
         }
 
@@ -59,6 +108,7 @@ namespace WindowsFormsApplication1
                 }
                 catch
                 {
+                    Globals.Settings.Token = SessionData.StringCipher.Encrypt("B33F", Globals.masterpass);
                 }
             }
             catch { }

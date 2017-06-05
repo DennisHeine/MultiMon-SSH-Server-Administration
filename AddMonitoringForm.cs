@@ -29,6 +29,15 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //bool cont=true;
+            foreach(String key in Globals.Settings.Monitors.Keys)
+                if (((MonitoringData)Globals.Settings.Monitors[key]).name == textBox1.Text)
+                {
+                    MessageBox.Show("Name already existing.");
+                    return;
+                }
+
+
             if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
             {
                 name = textBox1.Text;
