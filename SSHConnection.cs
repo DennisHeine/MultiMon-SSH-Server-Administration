@@ -53,8 +53,11 @@ namespace WindowsFormsApplication1
 
         public void getPS()
         {
-            SshCommand c = sshclient.RunCommand("ps -aux");
-            Globals.mainForm.setPS(c.Result);
+            try
+            {
+                SshCommand c = sshclient.RunCommand("ps -aux");
+                Globals.mainForm.setPS(c.Result);
+            }catch(Exception ex) { }
         }
 
         private String doCommand(String cmd)
@@ -79,8 +82,12 @@ namespace WindowsFormsApplication1
 
         public void getNetstat()
         {
-            SshCommand c = sshclient.RunCommand("netstat -a -p --tcp");            
-            Globals.mainForm.setNetstat(c.Result);
+            try
+            {
+                SshCommand c = sshclient.RunCommand("netstat -a -p --tcp");
+                Globals.mainForm.setNetstat(c.Result);
+            }
+            catch (Exception ex) { }
         }
 
         public void getCPUPercentage()

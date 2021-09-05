@@ -51,7 +51,12 @@ namespace WindowsFormsApplication1
             textBox3.Text = port.ToString();
             textBox2.Text = ip;
             textBox4.Text = username;
-            textBox5.Text = password;
+            //textBox5.Text = password;
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

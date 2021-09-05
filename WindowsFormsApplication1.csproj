@@ -39,7 +39,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Renci.SshNet">
-      <HintPath>..\..\..\..\..\..\libssh\lib\net40\Renci.SshNet.dll</HintPath>
+      <HintPath>..\..\..\Desktop\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

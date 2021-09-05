@@ -52,6 +52,8 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -62,8 +64,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.comboBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -150,18 +150,20 @@
             this.textBox2.BackColor = System.Drawing.Color.Black;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(121, 432);
+            this.textBox2.Location = new System.Drawing.Point(187, 434);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(116, 13);
             this.textBox2.TabIndex = 13;
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textBox3);
             this.groupBox3.Location = new System.Drawing.Point(823, 483);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(207, 274);
+            this.groupBox3.Size = new System.Drawing.Size(218, 274);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SysLog";
@@ -172,7 +174,7 @@
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(195, 245);
+            this.textBox3.Size = new System.Drawing.Size(206, 245);
             this.textBox3.TabIndex = 0;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
@@ -232,21 +234,23 @@
             this.textBox1.BackColor = System.Drawing.Color.Black;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(237, 432);
+            this.textBox1.Location = new System.Drawing.Point(303, 434);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(758, 13);
+            this.textBox1.Size = new System.Drawing.Size(580, 13);
             this.textBox1.TabIndex = 12;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // listView1
             // 
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(8, 19);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(107, 344);
+            this.listView1.Size = new System.Drawing.Size(173, 344);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // richTextBox1
@@ -254,11 +258,11 @@
             this.richTextBox1.BackColor = System.Drawing.Color.Black;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(121, 19);
+            this.richTextBox1.Location = new System.Drawing.Point(187, 19);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(891, 415);
+            this.richTextBox1.Size = new System.Drawing.Size(713, 415);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click_1);
@@ -275,7 +279,7 @@
             this.groupBox5.Controls.Add(this.richTextBox1);
             this.groupBox5.Location = new System.Drawing.Point(12, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1018, 465);
+            this.groupBox5.Size = new System.Drawing.Size(906, 465);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "SSH";
@@ -285,7 +289,7 @@
             // 
             this.button10.Location = new System.Drawing.Point(11, 427);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(104, 23);
+            this.button10.Size = new System.Drawing.Size(170, 23);
             this.button10.TabIndex = 17;
             this.button10.Text = "Delete";
             this.button10.UseVisualStyleBackColor = true;
@@ -295,7 +299,7 @@
             // 
             this.button11.Location = new System.Drawing.Point(11, 398);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(104, 23);
+            this.button11.Size = new System.Drawing.Size(170, 23);
             this.button11.TabIndex = 16;
             this.button11.Text = "Edit";
             this.button11.UseVisualStyleBackColor = true;
@@ -305,7 +309,7 @@
             // 
             this.button12.Location = new System.Drawing.Point(11, 369);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(104, 23);
+            this.button12.Size = new System.Drawing.Size(170, 23);
             this.button12.TabIndex = 15;
             this.button12.Text = "Add";
             this.button12.UseVisualStyleBackColor = true;
@@ -329,6 +333,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SCP File Copy";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(11, 20);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(237, 21);
+            this.comboBox3.TabIndex = 18;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Location = new System.Drawing.Point(11, 44);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(237, 20);
+            this.comboBox1.TabIndex = 17;
             // 
             // button2
             // 
@@ -394,6 +414,10 @@
             this.listBox1.TabIndex = 9;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // timer1
             // 
             this.timer1.Interval = 5000;
@@ -404,22 +428,6 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 5000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Location = new System.Drawing.Point(11, 44);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 20);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(11, 20);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(237, 21);
-            this.comboBox3.TabIndex = 18;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // backgroundWorker2
             // 
@@ -435,9 +443,9 @@
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.progressBar1);
-            this.groupBox6.Location = new System.Drawing.Point(1033, 12);
+            this.groupBox6.Location = new System.Drawing.Point(924, 12);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(344, 745);
+            this.groupBox6.Size = new System.Drawing.Size(453, 745);
             this.groupBox6.TabIndex = 34;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Server Stats";
@@ -448,7 +456,7 @@
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox5.Size = new System.Drawing.Size(321, 263);
+            this.textBox5.Size = new System.Drawing.Size(438, 293);
             this.textBox5.TabIndex = 40;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
@@ -463,28 +471,28 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(9, 479);
+            this.textBox4.Location = new System.Drawing.Point(123, 491);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(321, 254);
+            this.textBox4.Size = new System.Drawing.Size(321, 245);
             this.textBox4.TabIndex = 36;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 463);
+            this.label4.Location = new System.Drawing.Point(123, 471);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 35;
-            this.label4.Text = "Netstat -a -p --tcp";
+            this.label4.Text = "netstat -a -p --tcp";
             // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(9, 94);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(321, 23);
+            this.progressBar2.Size = new System.Drawing.Size(438, 23);
             this.progressBar2.TabIndex = 32;
             // 
             // label2
@@ -509,7 +517,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(9, 42);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(321, 23);
+            this.progressBar1.Size = new System.Drawing.Size(438, 23);
             this.progressBar1.TabIndex = 29;
             // 
             // Form1
@@ -517,12 +525,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1758, 766);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "MultiMon SSH Server Administration";

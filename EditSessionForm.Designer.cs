@@ -120,8 +120,10 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(79, 109);
             this.textBox5.Name = "textBox5";
+            this.textBox5.PasswordChar = '*';
             this.textBox5.Size = new System.Drawing.Size(193, 20);
             this.textBox5.TabIndex = 9;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // button1
             // 
@@ -160,6 +162,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditSessionForm";
             this.Text = "Edit Session";

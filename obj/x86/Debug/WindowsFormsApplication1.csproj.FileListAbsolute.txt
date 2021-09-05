@@ -1,0 +1,17 @@
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.csproj.AssemblyReference.cache
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.AddMonitoringForm.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.AddSessionForm.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.EditMonitoringForm.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.EditSessionForm.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.FormMacroEdit.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.FormMacros.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\MultiMon.Properties.Resources.resources
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.csproj.GenerateResource.cache
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.csproj.CoreCompileInputs.cache
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\bin\Debug\MultiMon.exe
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\bin\Debug\MultiMon.pdb
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\bin\Debug\Renci.SshNet.dll
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\WindowsFormsApplication1.csproj.CopyComplete
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\MultiMon.exe
+C:\Users\dennis\Documents\GitHub\MultiMon-SSH-Server-Administration\obj\x86\Debug\MultiMon.pdb

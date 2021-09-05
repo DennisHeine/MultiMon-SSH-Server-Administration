@@ -221,13 +221,17 @@ namespace WindowsFormsApplication1
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                Globals.mainForm.setTerminalText(textBox2.Text + " " + textBox1.Text);
-                Globals.sshconnection.sendCommand(textBox1.Text);                
-                textBox1.Text = "";
-                e.Handled = true;
+                if (e.KeyChar == 13)
+                {
+                    Globals.mainForm.setTerminalText(textBox2.Text + " " + textBox1.Text);
+                    Globals.sshconnection.sendCommand(textBox1.Text);
+                    textBox1.Text = "";
+                    e.Handled = true;
+                }
             }
+            catch (Exception ex) { }
         }
 
         private void listBox4_DoubleClick(object sender, EventArgs e)
@@ -477,7 +481,7 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK)
             {
-                SessionData s = new SessionData(f.name, f.ip, f.port, f.username, SessionData.StringCipher.Encrypt(f.password,Globals.masterpass));
+                SessionData s = new SessionData(f.name, f.ip, f.port, f.username,f.password);
                 Globals.Settings.Sessions.Add(f.name,s);
                 listView1.Items.Add(f.name);
             }
@@ -573,6 +577,21 @@ namespace WindowsFormsApplication1
         {
             textBox5.SelectionStart = textBox5.Text.Length;
             textBox5.ScrollToCaret();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            textBox1.Focus();
         }
     }
 }

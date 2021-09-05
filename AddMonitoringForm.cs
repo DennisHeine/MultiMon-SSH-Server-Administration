@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
                 }
 
 
-            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
+            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
             {
                 name = textBox1.Text;
                 ip = textBox2.Text;
